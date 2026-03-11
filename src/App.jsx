@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 
@@ -6,8 +6,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        {/* Login page */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* Dashboard page */}
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Redirect root / to login */}
+        <Route path="/" element={<Navigate to="/login" />} />
+
+        {/* Catch-all unknown routes */}
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );

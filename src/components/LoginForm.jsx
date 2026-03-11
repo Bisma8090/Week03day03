@@ -12,11 +12,8 @@ function LoginForm() {
     e.preventDefault();
     setError("");
     try {
-      // Backend login API
       const res = await API.post("/users/login", { email, password });
-      // Save JWT in localStorage
       localStorage.setItem("jwtToken", res.data.token);
-      // Redirect to dashboard
       navigate("/dashboard");
     } catch (err) {
       console.error(err);
@@ -32,11 +29,12 @@ function LoginForm() {
       }}
     >
       <div className="w-[380px] p-10 rounded-2xl backdrop-blur-md bg-white/10 border border-white/40 text-white">
+        
         <h2 className="text-3xl font-bold text-center mb-10">Login</h2>
 
         {error && <p className="text-red-500 text-center mb-3">{error}</p>}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 ">
           <input
             type="email"
             placeholder="Email"
@@ -51,7 +49,7 @@ function LoginForm() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-transparent border-b border-white px-2 outline-none py-2  placeholder-white"
+            className="w-full bg-transparent border-b border-white px-2  outline-none py-2  placeholder-white"
             required
           />
 
