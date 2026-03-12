@@ -6,7 +6,6 @@ function TaskList() {
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("jwtToken");
 
-  // Fetch all tasks
   const fetchTasks = async () => {
     setLoading(true);
     try {
@@ -20,7 +19,6 @@ function TaskList() {
     setLoading(false);
   };
 
-  // Delete task
   const deleteTask = async (id) => {
     try {
       await api.delete(`/tasks/${id}`, {
@@ -32,7 +30,6 @@ function TaskList() {
     }
   };
 
-  // Update task
   const updateTask = async (id, currentTitle) => {
     const newTitle = prompt("Update task", currentTitle);
     if (!newTitle) return;
@@ -48,7 +45,6 @@ function TaskList() {
     }
   };
 
-  // Toggle completed
   const toggleComplete = async (task) => {
     try {
       await api.put(
@@ -69,15 +65,15 @@ function TaskList() {
   if (loading) return <p className="text-center text-white/70">Loading tasks...</p>;
 
   return (
-    <div className="space-y-3 text-white mt-6">
+    <div className="space-y-3 text-white mt-4 sm:mt-6">
       {tasks.length > 0 ? (
         tasks.map((task) => (
           <div
             key={task._id}
-            className="flex justify-between items-center px-4 py-3 rounded-xl bg-white/10 border border-white/20"
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-3 rounded-xl bg-white/10 border border-white/20 gap-2 sm:gap-0"
           >
-            <p>{task.title}</p>
-            <div className="flex gap-2">
+            <p className="break-words">{task.title}</p>
+            <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
               <button
                 onClick={() => updateTask(task._id, task.title)}
                 className="px-3 py-1 rounded-lg bg-fuchsia-800 hover:bg-fuchsia-900 transition text-white text-sm"

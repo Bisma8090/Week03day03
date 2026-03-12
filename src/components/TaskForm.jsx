@@ -21,18 +21,18 @@ function TaskForm({ refresh }) {
   };
 
   return (
-    <form onSubmit={addTask} className="flex gap-3">
+    <form onSubmit={addTask} className="flex flex-col sm:flex-row gap-3">
       <input
         type="text"
         placeholder="Add new task..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 outline-none"
+        className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 outline-none w-full"
       />
 
       <button
         type="submit"
-        className="px-6 py-3 rounded-xl bg-fuchsia-800  hover:bg-fuchsia-900 text-white font-semibold transition"
+        className="px-6 py-3 rounded-xl bg-fuchsia-800 hover:bg-fuchsia-900 text-white font-semibold transition w-full sm:w-auto"
       >
         Add
       </button>
